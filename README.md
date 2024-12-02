@@ -8,7 +8,15 @@
 Run the following commands
 ```
 nasm -f win64 mp2a.asm
-gcc -c mp2c.c -0 mp2c.obj -m64
+gcc -c mp2c.c -o mp2c.obj -m64
 gcc mp2c.obj mp2a.obj -o mp2.exe -m64
-mp2e 
+mp2.exe
+```
+
+To check the outputs, run these commands
+```
+nasm -f win64 mp2a.asm
+gcc -c sanityCheck.c -o sanityCheck.obj -m64
+gcc sanityCheck.obj mp2a.obj -o sanityCheck.exe -m64
+sanityCheck.exe
 ```
