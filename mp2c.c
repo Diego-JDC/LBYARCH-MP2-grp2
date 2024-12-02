@@ -8,12 +8,13 @@ extern void asmsaxpy(int n, float* vecx, float* vecy, float* vecz, float a);
 int main(void) {
     float scalar = 3.0f;
 
-    int vectorLength = (int)pow(2, 30); //change to test cases (20, 24, 30)
+    int vectorLength = (int)pow(2, 24); //change to test cases (20, 24, 30)
 
     float* vx = (float*)malloc(vectorLength * sizeof(float));
     float* vy = (float*)malloc(vectorLength * sizeof(float));
-
-    for (int j = 0; j < vectorLength; j++) {
+	
+	int j = 0;
+    for (j = 0; j < vectorLength; j++) {
         vx[j] = (float)j+1;
         vy[j] = (float)j+2;
     }
@@ -22,7 +23,8 @@ int main(void) {
     float* cZ = (float*)malloc(vectorLength * sizeof(float));
 
 	clock_t start = clock();
-	for (int i = 0; i < vectorLength; i++) {
+	int i = 0;
+	for (i = 0; i < vectorLength; i++) {
         cZ[i] = scalar * vx[i] + vy[i];
     }
 	clock_t end = clock();
