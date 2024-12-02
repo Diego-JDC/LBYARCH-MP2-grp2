@@ -1,6 +1,6 @@
 # LBYARCH x86-to-C interface programming project
-+ Dela Cruz, Diego 
 + De Jesus, Ian
++ Dela Cruz, Diego 
 ## Comparative execution time and short analysis of the performance of the kernels
 ![alt text](Screenshot/avg30-pow24.png)\
 for vector length ``2^24``
