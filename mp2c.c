@@ -8,7 +8,7 @@ extern void asmsaxpy(int n, float* vecx, float* vecy, float* vecz, float a);
 int main(void) {
     float scalar = 3.0f;
 
-    int vectorLength = (int)pow(2, 24); //change to test cases (20, 24, 30)
+    int vectorLength = (int)pow(2, 30); //change to test cases (20, 24, 30)
 
     float* vx = (float*)malloc(vectorLength * sizeof(float));
     float* vy = (float*)malloc(vectorLength * sizeof(float));
@@ -22,21 +22,36 @@ int main(void) {
     float* assemblyZ = (float*)malloc(vectorLength*sizeof(float));
     float* cZ = (float*)malloc(vectorLength * sizeof(float));
 
-	clock_t start = clock();
-	int i = 0;
-	for (i = 0; i < vectorLength; i++) {
-        cZ[i] = scalar * vx[i] + vy[i];
+    double cTime;
+    double cTimeAvg = 0;
+    double asmTime;
+    double asmTimeAvg = 0;
+
+    for (j = 0; j < 30; j++) {
+        clock_t start = clock();
+        int i = 0;
+        for (i = 0; i < vectorLength; i++) {
+            cZ[i] = scalar * vx[i] + vy[i];
+        }
+        clock_t end = clock();
+        cTime = (double)(end - start) / CLOCKS_PER_SEC;
+        cTimeAvg += cTime;
+
+        start = clock();
+        asmsaxpy(vectorLength, vx, vy, assemblyZ, scalar);
+        end = clock();
+
+        asmTime = (double)(end - start) / CLOCKS_PER_SEC;
+        asmTimeAvg += asmTime;
+        printf("Vector Length\tC Time\t\tASM Time\n");
+        printf("%d\t%f\t%f\n", vectorLength, cTime, asmTime);    
     }
-	clock_t end = clock();
-	double cTime = (double)(end - start) / CLOCKS_PER_SEC;
+    asmTimeAvg /= 30;
+    cTimeAvg /= 30;
 
-	start = clock();
-    asmsaxpy(vectorLength, vx, vy, assemblyZ, scalar);
-	end = clock();
-
-	double asmTime = (double)(end - start) / CLOCKS_PER_SEC;
-	printf("Vector Length\tC Time\t\tASM Time\n");
-    printf("%d\t%f\t%f\n", vectorLength, cTime, asmTime);    
+    printf("\nAVERAGE TIME AFTER 30 ITERATIONS:\n");
+    printf("Vector Length\tC Time\t\tASM Time\n");
+    printf("%d\t\t%f\t%f", vectorLength, cTimeAvg, asmTimeAvg);
 
     return 0;
 }

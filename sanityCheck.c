@@ -11,22 +11,23 @@ int main(void) {
     float* vx = (float*)malloc(vectorLength * sizeof(float));
     float* vy = (float*)malloc(vectorLength * sizeof(float));
 
-    for (int i = 0; i < vectorLength; i++) {
+    int i;
+    for (i = 0; i < vectorLength; i++) {
         vx[i] = (float)i+1;
         vy[i] = (float)i+2;
     }
 
     float* assemblyZ = (float*)malloc(vectorLength*sizeof(float));
     float* cZ = (float*)malloc(vectorLength * sizeof(float));
-
-	for (int i = 0; i < vectorLength; i++) {
+	
+	for (i = 0; i < vectorLength; i++) {
         cZ[i] = scalar * vx[i] + vy[i];
     }
 
     asmsaxpy(vectorLength, vx, vy, assemblyZ, scalar);
 
     printf("C\t\tASM\n");
-    for (int i = 0; i < vectorLength; i++) {
+    for (i = 0; i < vectorLength; i++) {
         printf("%f\t%f\n", cZ[i], assemblyZ[i]);
     }
 
