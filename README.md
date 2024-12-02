@@ -1,13 +1,15 @@
-## TODO
+# LBYARCH x86-to-C interface programming project
++ Dela Cruz, Diego 
++ De Jesus, Ian
 ## Comparative execution time and short analysis of the performance of the kernels
 ![alt text](Screenshot/avg30-pow24.png)\
-for vector length 2^24
+for vector length ``2^24``
 
 ![alt text](Screenshot/avg30-pow20.png)\
-for vector length 2^20
+for vector length ``2^20``
 ### Analysis
 As can be seen in the pictures above, the performance of the x86-64 implementation of the kernel is far faster than the C implmentation. This has to do with the lack of overhead cost of compiling the x86-64 implementation as compared to the C implementation.
-> **NOTE**: We were not able to test the performance of the kernel given vector length of 2^30. The pictures above show the performance for vector lengths 2^20 and 2^24.
+> **NOTE**: We were not able to test the performance of the kernel given vector length of 2^30. The pictures above show the performance for vector lengths ``2^20`` and ``2^24``.
 ## Screenshot of the program output with the correctness check (C & x86-64).
 ### Parameters
 + ``vectorLength`` : ``5``
@@ -21,7 +23,7 @@ As can be seen in the pictures above, the performance of the x86-64 implementati
 ## short videos (5-10mins) showing your source code, compilation, and execution of the C and x86-64 program
 > **To be done face to face**
 
-## To compile the program
+## To compile the program (Windows)
 Run the following commands
 ```
 nasm -f win64 mp2a.asm
